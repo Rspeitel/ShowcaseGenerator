@@ -8,20 +8,39 @@ class Entry {
     this.leader = leader;
     this.follower = follower;
     this.dance = dance;
-    this.id = entriesCounter;
-    entriesCounter++;
+    this.id = GLOBAL_EntryCounter;
+    GLOBAL_EntryCounter++;
+  }
+
+  findValidHeats(heats) {
+    return heats.map((heat) => {
+      if (heat.canAddEntry(this)) { return heat }
+      return null;
+    }).filter((heat) => heat !== null);
   }
 }
 
 class Heat {
-  entries = null;
+  entries = new Map();
   id = null;
   dance = null;
 
   constructor(dance) {
-    this.id = heatCounter;
+    this.id = GLOBAL_HeatCounter;
     this.dance = dance;
-    heatCounter++;
+    GLOBAL_HeatCounter++;
+  }
+
+  canAddEntry(possibleEntry) {
+    if(this.entries.size >= GLOBAL_MaxDancersOnFloor.get(this.dance)) { return false }
+    if(possibleEntry.dance !== this.dance) { return false }
+    let resultArray = Array.from(this.entries.values()).map((entry) => {
+      if(possibleEntry.leader.id === entry.leader.id || possibleEntry.leader.id === entry.follower.id) { return false }
+      if(possibleEntry.follower.id === entry.leader.id || possibleEntry.follower.id === entry.follower.id) { return false }
+      return true;
+    });
+
+    return !resultArray.some((entry) => !entry);
   }
 }
 
@@ -30,17 +49,17 @@ class Dancer {
   id = null;
   dances = new Map();
 
-  constructor(name) {
+  constructor(name, listOfDances) {
     this.name = name;
-    this.id = dancerCounter;
+    this.id = GLOBAL_DancerCounter;
     let emptyDanceCard = new Map();
-    eventDanceCard.dances.forEach((dance, danceName) => {
+    listOfDances.forEach((danceName) => {
       emptyDanceCard.set(danceName, new Object({
           dance: danceName,
           entries: new Map(),
       }));
     });
-    dancerCounter++;
+    GLOBAL_DancerCounter++;
     this.dances = emptyDanceCard
   }
 }
@@ -52,5 +71,4 @@ class EventDanceCard {
   constructor() {
 
   }
-
 }
