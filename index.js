@@ -1,7 +1,7 @@
 // SETTINGS
 var maxEntriesForCouple = 4;
 var maxDancesForIndiviudal = 12;
-var danceGroups = [['waltz', 'tango', 'foxtrot', 'vwaltz'], ['chacha', 'rumba', 'swing', 'bolero', 'mambo']];
+var danceGroupsSetting = [['waltz', 'tango', 'foxtrot', 'vwaltz'], ['chacha', 'rumba', 'swing', 'bolero', 'mambo']];
 var maxDancersOnFloor = new Map([['waltz', 12], ['tango', 12], ['foxtrot', 12], ['vwaltz', 12], ['chacha', 12], ['rumba', 12], ['swing', 12], ['bolero', 12], ['mambo', 12]]);
 //const defaultDancesStruct = {waltz: 0, tango: 0, foxtrot: 0, vwaltz: 0, cha-cha: 0, rumba: 0, swing: 0, bolero: 0, mambo: 0};
 var startingDanceNumber =100
@@ -25,35 +25,36 @@ function onCreateHeatClick() {
   reader.onload = function (e) {
     text = reader.result;
 
-    populateDancesFromHeader(text.split('\r\n')[0].split(',').slice(2));
+    const csvData = text.split('\r\n').map((row) => row.split(','));
 
-    //Iterate Through Each Row
-    text.split('\r\n').slice(1).forEach((row) => {
-      parsedRow = row.split(',');
-      const leader = findOrInitalizeDancer(parsedRow[0]);
-      const follower = findOrInitalizeDancer(parsedRow[1]);
-      // Add Dances to totals
-      // Add dances to couples
-      parsedRow.splice(2).forEach((numberOfEntries, index) => {
-        generateEntriesForDance(leader, follower, eventDanceCardTranslator[index], numberOfEntries)
-      });
-    });
-
-    eventDanceCard.dances.forEach((dance, danceName) => {
-      dance.numberOfHeats = Math.ceil(dance.numberOfEntries / parseFloat(maxDancersOnFloor.get(danceName)) )
-      eventDanceCard.dancers.forEach((dancer) => {
-        dancer.dances.get(danceName).numberOfHeats > dance.numberOfHeats ? dance.numberOfHeats = dancer.dances.get(danceName).numberOfHeats : null;
-      });
-    });
-
-    generateHeats();
+    mainGenerator(csvData);
   }
   reader.readAsText(input);
 }
 
+
 // Major Functions
-function populateDancesFromHeader(headerArray) {
-  headerArray.forEach((dance) => {
+
+function mainGenerator(csvData) {
+  //First two are always leader/follower
+  csvData.pop(-1);
+  populateDancesFromHeader(csvData[0].slice(2));
+
+  csvData.slice(1).forEach((row) => {
+    // First two are always leader and follower
+    const leader = findOrInitalizeDancer(row[0]);
+    const follower = findOrInitalizeDancer(row[1]);
+    row.slice(2).forEach((numberOfEntries, index) => {
+      generateEntriesForDance(leader, follower, eventDanceCardTranslator[index], numberOfEntries)
+    });
+  });
+
+  var minNumberOfHeats = findMinNumberOfHeatsPerDance(eventDanceCard.dances, eventDanceCard.dancers);
+  generateHeats(danceGroupsSetting, minNumberOfHeats, eventDanceCard.dances);
+}
+
+function populateDancesFromHeader(header) {
+  header.forEach((dance) => {
     eventDanceCard.dances.set(dance.toLowerCase(), {
       dance: dance.toLowerCase(),
       entries: new Map(),
@@ -72,11 +73,25 @@ function generateEntriesForDance(leader, follower, dance, numberOfEntries) {
   }
 }
 
-function generateHeats() {
+function findMinNumberOfHeatsPerDance(dances, dancers) {
+  var minNumberOfHeats = new Map();
+  dances.forEach((dance, danceName) => {
+    minNumberOfHeats.set(danceName, Math.ceil(dance.entries.size / parseFloat(maxDancersOnFloor.get(danceName))));
+    dancers.forEach((dancer) => {
+      if (dancer.dances.get(danceName).entries.size > minNumberOfHeats.get(danceName)) {
+        minNumberOfHeats.set(dance.name, dancer.dances.get(danceName).entries.size);
+      }
+    });
+  });
+
+  return minNumberOfHeats;
+}
+
+function generateHeats(danceGroups, minNumberOfHeats, dances) {
   danceGroups.forEach(group => {
     var heatCounter = [];
     group.forEach(dance => {
-      heatCounter.push(eventDanceCard.dances.get(dance).numberOfHeats);
+      heatCounter.push(minNumberOfHeats.get(dance));
     })
 
     lastIndex = 0;
@@ -84,7 +99,7 @@ function generateHeats() {
       if(lastIndex < group.length && heatCounter[lastIndex] > 0) {
         heatCounter[lastIndex]--;
         var newHeat = new Heat(group[lastIndex]);
-        heats.set(newHeat.id, new Heat(group[lastIndex]))
+        dances.get(group[lastIndex]).heats.set(newHeat.id, newHeat);
       } else if (lastIndex > group.length) {
         lastIndex = -1;
       }
