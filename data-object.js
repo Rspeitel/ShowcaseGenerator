@@ -47,6 +47,7 @@ class Heat {
 class Dancer {
   name = null;
   id = null;
+  dancingWith = new Map();
   dances = new Map();
 
   constructor(name, listOfDances) {
@@ -61,6 +62,59 @@ class Dancer {
     });
     GLOBAL_DancerCounter++;
     this.dances = emptyDanceCard
+  }
+
+  populateDancerProfile() {
+    // Find dance partners
+    var dancingWithElement = document.getElementById("dancer-profile-dancing-with");
+    this.dancingWith.forEach((dancer) => {
+      var newElem = document.createElement('button');
+      newElem.innerHTML = dancer.name;
+      dancingWithElement.appendChild(newElem);
+    })
+
+    // Collect Entries and count
+    var breakdown = document.getElementById("dancer-profile-total-breakdown");
+    var entries = [];
+    breakdown.innerHTML = "";
+    this.dances.forEach((dance) => {
+      entries.push(Array.from(dance.entries.values()));
+      var newElem = document.createElement('tr');
+      var danceNameData = document.createElement('td');
+      danceNameData.innerHTML = dance.dance;
+      var total = document.createElement('td');
+      total.innerHTML = dance.entries.size;
+      newElem.appendChild(danceNameData);
+      newElem.appendChild(total);
+      breakdown.appendChild(newElem);
+    })
+
+    // Sort Entries
+    entries = entries.flat();
+    entries = entries.sort((a, b) => {
+      if (a.heat === null) {
+        return 1;
+      } else if (b.heat === null) {
+        return -1;
+      } else {
+        return a.heat.id - b.heat.id;
+      }
+    });
+
+    // Display Entries as HeatList
+    var heatlist = document.getElementById("dancer-profile-heatlist-body");
+    heatlist.innerHTML = "";
+    entries.forEach((entry) => {
+      var newElem = document.createElement('tr');
+      var heatNumber = document.createElement('td');
+      heatNumber.innerHTML = (entry.heat !== null ? entry.heat.id : 'N/A') + ' ' + entry.dance;
+      var dancers = document.createElement('td');
+      dancers.innerHTML = `(${entry.leader.id}) ${entry.leader.name} & ${entry.follower.name}`
+      newElem.appendChild(heatNumber);
+      newElem.appendChild(dancers);
+      heatlist.appendChild(newElem);
+    })
+
   }
 }
 

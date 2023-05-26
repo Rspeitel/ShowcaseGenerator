@@ -51,6 +51,17 @@ function mainGenerator(csvData) {
   var minNumberOfHeats = findMinNumberOfHeatsPerDance(GLOBAL_EventDanceCard.dances, GLOBAL_EventDanceCard.dancers);
   generateHeats(danceGroupsSetting, minNumberOfHeats, GLOBAL_EventDanceCard.dances);
   placeEntriesInHeat(GLOBAL_EventDanceCard);
+
+  // Populate UI
+  populateDancersDropdown(GLOBAL_EventDanceCard.dancers);
+}
+
+// Populate UI methods
+function populateDancersDropdown(dancers) {
+  var list = document.getElementById("dancer-list");
+  dancers.forEach((dancer) => {
+    list.innerHTML += `<a onclick='selectDancer("${dancer.id}")'>${dancer.id}: ${dancer.name}</a>`
+  })
 }
 
 function populateDancesFromHeader(header) {
@@ -69,7 +80,9 @@ function generateEntriesForDance(leader, follower, dance, numberOfEntries, event
     const tmpEntry = new Entry(leader, follower, dance);
     eventDanceList.get(dance).entries.set(tmpEntry.id, tmpEntry)
     leader.dances.get(dance).entries.set(tmpEntry.id, tmpEntry);
+    leader.dancingWith.set(follower.id, follower);
     follower.dances.get(dance).entries.set(tmpEntry.id, tmpEntry);
+    follower.dancingWith.set(leader.id, leader);
   }
 }
 
