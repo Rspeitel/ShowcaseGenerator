@@ -161,12 +161,16 @@ main {
   justify-content: start;
   align-items: center;
 }
+.dance-group-item-helper {
+  height: 5px;
+  background-color: var(--accent-yellow);
+}
 
 .dance-group-item {
+  height: 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 8px 0 0 0;
 }
 
 .close-button-dance-group {

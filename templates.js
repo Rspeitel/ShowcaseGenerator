@@ -5,9 +5,9 @@
       =     '<div id="dance-{{uuid}}" draggable=true class="dance-card">'
       +       '<button class="close-button material-symbols-outlined">close</button>'
       +       '<span class="drag-indicator material-symbols-outlined">drag_indicator</span>'
-      +       '<input type="text" placeholder="dance" value="{{danceName}}">'
-      +       '<input type="number" placeholder=0 value={{danceMax}}>'
-      +       '<input type="number" placeholder=0 value={{dancerMax}}>'
+      +       '<input id="name" type="text" placeholder="dance" value="{{danceName}}">'
+      +       '<input id="dance-max" type="number" placeholder=0 value={{danceMax}}>'
+      +       '<input id="dancer-max" type="number" placeholder=0 value={{dancerMax}}>'
       +     '</div>';
 
     this.danceGroupTemplate

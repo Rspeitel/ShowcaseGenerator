@@ -1,6 +1,10 @@
 (function (window) {
   'use strict';
 
+  Array.prototype.insert = function (index, ...items) {
+    this.splice(index, 0, ...items);
+  }
+
   function Event() {
     this.dances = [];
     this.dancers = [];
@@ -15,6 +19,18 @@
    * @param {Array<uint>} entries
    */
 
+  Event.prototype.updateDance = function(uuid, element, value) {
+    let dance = this.findDance(uuid);
+    if(element === 'name') {
+      dance.name = value;
+    } else if (element === 'dance-max') {
+      dance.maxDance = parseInt(value);
+
+    } else if (element === 'dancer-max') {
+      dance.maxDancer = parseInt(value);
+    }
+  }
+
   Event.prototype.findOrCreateDancer = function (name, leader, entries) {
     let dancer = this.dancers.find(dancer => dancer.name === name);
 
@@ -24,6 +40,10 @@
     }
     dancer.addEntries(entries);
     dancer.leader = dancer.leader || leader;
+  }
+
+  Event.prototype.findDance = function(uuid) {
+    return this.dances.find(dance => dance.uuid === uuid);
   }
 
   Event.prototype.findOrCreateDance = function(name) {
@@ -44,8 +64,14 @@
     return danceGroupUUID;
   }
 
-  Event.prototype.addDanceToGroup = function (dance, uuid) {
-    this.danceGroups.get(uuid).push(dance);
+  Event.prototype.addDanceToGroup = function (dance, groupUUID, beforeDanceUUID) {
+    let danceGroup = this.danceGroups.get(groupUUID);
+    let indexOfBeforeDance = danceGroup.findIndex(dance => dance.uuid === beforeDanceUUID)
+    if (indexOfBeforeDance > -1) {
+        danceGroup.insert(dance, indexOfBeforeDance);
+    } else {
+      danceGroup.push(dance);
+    }
   }
 
   Event.prototype.removeDanceFromGroup = function (uuid) {

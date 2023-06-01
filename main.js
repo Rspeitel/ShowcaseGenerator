@@ -10,16 +10,10 @@
   }
 
   var ShowcaseGenerator = new App();
-  ShowcaseGenerator.event.findOrCreateDance('Waltz');
-  ShowcaseGenerator.event.findOrCreateDance('Tango');
-  ShowcaseGenerator.event.findOrCreateDance('Foxtrot');
-  ShowcaseGenerator.event.findOrCreateDance('V-Waltz');
-  ShowcaseGenerator.event.addGroup();
-  ShowcaseGenerator.event.addGroup();
-
-  ShowcaseGenerator.settingsView.init(ShowcaseGenerator.event);
-
-  ShowcaseGenerator.settingController.addDanceToGroup(ShowcaseGenerator.event.dances[0], ShowcaseGenerator.event.danceGroups.keys().next().value)
+  ShowcaseGenerator.settingController.addDance('Waltz');
+  ShowcaseGenerator.settingController.addDance('Tango');
+  ShowcaseGenerator.settingController.addDance('Foxtrot');
+  ShowcaseGenerator.settingController.addDance('V Waltz');
 
   window.app = window.app || {};
   window.app.ShowcaseGenerator = ShowcaseGenerator;
