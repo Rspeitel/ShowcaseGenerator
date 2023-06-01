@@ -1,78 +1,58 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Showcase Entry Generator</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@radix-ui/colors@latest/grayDark.css" />
     <link rel="stylesheet" href="./style.css">
   </head>
+  <header>
+    Showcase Creator 10000
+    <div class="vb"></div>
+    <nav>
+      <button class="nav-buttons nav-active" onclick="setPage(event, 'settings')">Settings</button>
+      <button class="nav-buttons" onclick="setPage(event, 'event')">Event</button>
+      <button class="nav-buttons" onclick="setPage(event, 'dancers')">Dancers</button>
+    </nav>
+  </header>
   <body>
-    <main>
-      <!-- Tab links -->
-      <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'Settings')">Settings</button>
-        <button class="tablinks" onclick="openTab(event, 'Event')">Event</button>
-        <button class="tablinks" onclick="openTab(event, 'Dancers')">Dancers</button>
-      </div>
-
-      <!-- Tab content -->
-      <div id="Settings" class="tabcontent">
-        <h3>Settings</h3>
-        <p>Placeholder for Settings</p>
-        <label>Choose a csv:</label>
-        <input type="file"
-               id="competitor-list" name="compeitor-list"
-               accept=".csv">
-        <button type="button" onclick="onCreateHeatClick()">Create Heats</Button>
-      </div>
-
-      <div id="Event" class="tabcontent">
-        <h3>Event</h3>
-        <p>Placeholder for event</p>
-      </div>
-
-      <div id="Dancers" class="tabcontent">
-        <div class="dropdown">
-          <input
-            placeholder="Dancer... Search by Bib or Name"
-            onfocus="dancerSelectActive()"
-            id="dancer-search-field"
-            class="dropdown-search"
-          />
-          <div id="dancer-list" class="dropdown-content">
+    <main class="main-content" id="main-content">
+      <h3>General Event Info</h3>
+      <hr>
+      <label>Event Name: </label><input type="text"/>
+      <h3>Dances</h3>
+      <hr>
+      <div class="settings-dances">
+        <div class="dance-table">
+          <div class='dance-card dance-card-header'>
+            <div></div>
+            <div></div>
+            <div>Dance</div>
+            <div>Max On Floor</div>
+            <div>Max Per Dancer</div>
+          </div>
+          <div id="dance-table" class="dance-card-table-content">
+            <button id="add-dance-button" class="add-dance"><span class="material-symbols-outlined">add</span>Add Dance</button>
           </div>
         </div>
-        <hr class="solid">
-        <div id="dancer-profile" class="dancer-profile">
-          <div id="dancer-profile-overview" class="dancer-profile-overview">
-            <div> Total Entries: <span id="dancer-profile-total-entries"/> </div>
-            <hr/>
-            <div> Dancing With: <div id="dancer-profile-dancing-with"> </div> </div>
-            <hr/>
-            <table id = dancer-profile-totals>
-              <th>Dance</th>
-              <th>Entries</th>
-              <tbody id="dancer-profile-total-breakdown"/>
-            </table>
-          </div>
-          <hr class="solid">
-          <div class="dancer-profile-heatlist-wrapper">
-            <table id="dancer-profile-heatlist" class="dancer-profile-heatlist">
-              <th>HEAT</th>
-              <th>Dancers</th>
-              <th>Edit</th>
-              <tbody id="dancer-profile-heatlist-body"/>
-            </table>
-          </div>
+        <div id="dance-groups" class="dance-groups">
+          <button id="add-dance-group" class="add-dance-group"><span class="material-symbols-outlined">add</span>Add Group</button>
         </div>
+      </div>
+      <h3>Couples</h3>
+      <hr>
+      <div class="settings-couples">
+        <div>Competitor List</div>
+        <input type="file" id="competitor-list" name="compeitor-list" accept=".csv">
       </div>
     </main>
-	<script src="data-object.js"></script>
-	<script src="index.js"></script>
-	<script src="ui.js"></script>
+    <script src="helpers.js"></script>
+    <script src="templates.js"></script>
+    <script src="views.js"></script>
+    <script src="event.js"></script>
+    <script src="controller.js"></script>
+    <script src="main.js"></script>
   </body>
 </html>
-
-
-

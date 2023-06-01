@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Showcase Entry Generator</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+    <main>
+      <!-- Tab links -->
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'settings')">Settings</button>
+        <button class="tablinks" onclick="openTab(event, 'Event')">Event</button>
+        <button class="tablinks" onclick="openTab(event, 'Dancers')">Dancers</button>
+      </div>
+
+      <!-- Tab content -->
+      <div id="settings" class="tabcontent">
+        <h3>General Info</h3>
+        <label>Event Name:</label>
+        <input type="text" />
+        <h3>Dances</h3>
+        <hr/>
+        <div class="settings-define-dances">
+          <div class="settings-dance-group" id="dance-group-one">
+            <div class="settings-dance-group-dances"></div>
+            <button class="settings-dance-in-group-new" onclick='DanceItem("dance-group-one", "Rumba")'>Add Dance</button>
+          </div>
+          <button class="settings-dance-group-new">New Group</button>
+        </div>
+
+        <h3>Entries</h3>
+        <label>Choose a csv:</label>
+        <input type="file"
+               id="competitor-list" name="compeitor-list"
+               accept=".csv">
+        <button type="button" onclick="onCreateHeatClick()">Create</Button>
+      </div>
+
+      <div id="Event" class="tabcontent">
+        <h3>Event</h3>
+        <p>Placeholder for event</p>
+      </div>
+
+      <div id="Dancers" class="tabcontent">
+        <div class="dropdown">
+          <input
+            placeholder="Dancer... Search by Bib or Name"
+            onfocus="dancerSelectActive()"
+            id="dancer-search-field"
+            class="dropdown-search"
+          />
+          <div id="dancer-list" class="dropdown-content">
+          </div>
+        </div>
+        <hr class="solid">
+        <div id="dancer-profile" class="dancer-profile">
+          <div id="dancer-profile-overview" class="dancer-profile-overview">
+            <div> Total Entries: <span id="dancer-profile-total-entries"/> </div>
+            <hr/>
+            <div> Dancing With: <div id="dancer-profile-dancing-with"> </div> </div>
+            <hr/>
+            <table id = dancer-profile-totals>
+              <th>Dance</th>
+              <th>Entries</th>
+              <tbody id="dancer-profile-total-breakdown"/>
+            </table>
+          </div>
+          <hr class="solid">
+          <div class="dancer-profile-heatlist-wrapper">
+            <table id="dancer-profile-heatlist" class="dancer-profile-heatlist">
+              <th>HEAT</th>
+              <th>Dancers</th>
+              <th>Edit</th>
+              <tbody id="dancer-profile-heatlist-body"/>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="data-object.js"></script>
+    <script src="index.js"></script>
+    <script src="ui.js"></script>
+    <script src="settings.js"></script>
+  </body>
+</html>
+
+
+

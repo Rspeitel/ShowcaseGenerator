@@ -1,0 +1,175 @@
+/**********************************************************************/
+/* GLOBAL Styles */
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Scrollbar  Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Scrollbar Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+:root {
+  --button-hover-border: solid 1px red;
+  --button-hover-bg: grey;
+  --border-radius: 2px;
+  --border-defaults: solid 2px grey;
+}
+
+body {
+  box-sizing: border-box;
+}
+
+input {
+  margin: 5px;
+}
+
+hr.solid {
+  margin: 15px;
+}
+
+button.material-symbols-outlined {
+  border: none;
+  background: none;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4px;
+}
+
+button.material-symbols-outlined:hover {
+  border: var(--button-hover-border);
+  background-color: var(--button-hover-bg);
+  border-radius: 50%;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 200,
+  'GRAD' -25,
+  'opsz' 24
+}
+
+/**********************************************************************/
+/* Style the table */
+table {
+  border-collapse: collapse;
+}
+th {
+  background: #cacacc;
+}
+
+tr:nth-child(odd) {
+  background: #cccdcf;
+}
+
+
+/**********************************************************************/
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+/**********************************************************************/
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  margin: 15px;
+}
+.dropdown-search {
+  position: relative;
+  display: inline-block;
+  width: 500px;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f6f6f6;
+  width: 500px;
+  border: 1px solid #ddd;
+  max-height: 500px;
+  min-height: 100px;
+  overflow: scroll;
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/**********************************************************************/
+.dancer-profile {
+  display: flex;
+}
+
+.dancer-profile-overview {
+  width: 25%;
+}
+
+.dancer-profile-heatlist-wrapper {
+  height: 75vh;
+  overflow: auto;
+  width: 75%;
+}
+
+.dancer-profile-heatlist {
+  width: 100%;
+  text-align: left;
+}
+
+/**********************************************************************/

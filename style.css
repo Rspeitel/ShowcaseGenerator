@@ -1,114 +1,194 @@
-/**********************************************************************/
-/* Style the divider */
-hr.solid {
-  margin: 15px;
+/* Variables Colors */
+:root {
+  --black: #202020;
+  --dark-grey: #3F3F3F;
+  --grey: #707070;
+  --light-grey: #d3d3d3;
+  --accent-yellow: #FFDF6C;
+  --white: #FFFFFF;
+
 }
 
-/**********************************************************************/
-/* Style the table */
-table {
-  border-collapse: collapse;
-}
-th {
-  background: #cacacc;
-}
-
-tr:nth-child(odd) {
-  background: #cccdcf;
+/* Globals */
+header {
+  background-color: var(--dark-grey);
+  font-size: 36px;
+  color: var(--white);
+  display: flex;
+  align-items: flex-end;
+  margin: 0;
+  padding: 16px;
 }
 
-
-/**********************************************************************/
-/* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
+html, body {
+  background-color: var(--white);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+  color: var(--black);
 }
 
-/* Style the buttons that are used to open the tab content */
-.tab button {
+input[type=text], input[type=number] {
+  border: none;
+  border-bottom: 1px solid var(--black);
+  font-size: 20px;
+}
+
+input[type=text]:focus {
+  outline: none;
+}
+
+input[type=number] {
+  width: 40%;
+}
+
+button {
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+main {
+  margin: 16px;
+}
+
+/* General */
+.drag-indicator {
+  cursor: move;
+}
+
+/* Header/Nav Items */
+
+.vb {
+  width: 2px;
+  height: 50px;
+  background-color: var(--accent-yellow);
+  margin: 0 16px 0 16px;
+}
+
+.nav-buttons {
   background-color: inherit;
+  font-size: 24px;
   float: left;
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
   transition: 0.3s;
+  color: var(--white);
+  margin: 8px;
 }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
+.nav-buttons:hover {
+  color: var(--accent-yellow);
 }
 
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
+.nav-active {
+  color: var(--accent-yellow);
 }
 
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-/**********************************************************************/
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  margin: 15px;
-}
-.dropdown-search {
-  position: relative;
-  display: inline-block;
-  width: 500px;
-  font-size: 25px;
-  font-weight: bold;
-}
+/* Settings */
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f6f6f6;
-  width: 500px;
-  border: 1px solid #ddd;
-  max-height: 500px;
-  min-height: 100px;
-  overflow: scroll;
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-/**********************************************************************/
-.dancer-profile {
+.settings-dances {
   display: flex;
+  height: 500px;
 }
 
-.dancer-profile-overview {
-  width: 25%;
+/* Dance Tables */
+
+.dance-table {
+  width: 40vw;
+  min-width: 600px;
+  height: 75%;
+  margin: 8px;
 }
 
-.dancer-profile-heatlist-wrapper {
-  height: 75vh;
-  overflow: auto;
-  width: 75%;
+.dance-card-table-content {
+  overflow-y: auto;
+  height: 100%;
 }
 
-.dancer-profile-heatlist {
+.dance-card-header {
+  font-weight: 700;
+}
+
+.dance-card {
+  display: grid;
+  grid-template-columns: 2% 5% auto 25% 25%;
+  align-items: end;
+  border: 1px solid var(--grey);
+  margin: 8px 0 8px 0;
+  padding: 8px;
+  justify-items: center;
+}
+
+.add-dance {
   width: 100%;
-  text-align: left;
 }
 
-/**********************************************************************/
+/* Dance Groups */
+.dance-groups {
+  max-width: 60vw;
+  display: flex;
+  margin: 8px;
+  overflow-x: auto;
+}
+
+.add-dance-group {
+  min-width: 200px;
+  height: calc(100% - 32px);
+  margin: 8px;
+}
+
+.dance-group-card {
+  margin: 8px;
+  width: 250px;
+  min-width: 250px;
+  height: calc(100% - 32px);
+  border: 1px solid var(--grey);
+}
+
+.dance-group-title {
+  width: 100%;
+  margin: 8px 0 8px 0;
+  padding-left: 8px;
+}
+
+.dance-group-item-title{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.dance-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0 0 0;
+}
+
+.close-button-dance-group {
+  position: relative;
+  top: -35px;
+  left: 216;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  display: flex;
+  justify-content: middle;
+  align-items: center;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.close-button:hover {
+  background-color: var(--light-grey);
+}
