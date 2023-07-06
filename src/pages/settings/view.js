@@ -8,7 +8,8 @@ export function SettingsView() {
   this.addDanceButton = document.getElementById('add-dance-button');
   this.danceGroups = document.getElementById('dance-groups');
   this.addDanceGroup = document.getElementById('add-dance-group');
-  this.submit = document.getElementById('complete-setup');
+  this.competitorList = document.getElementById('competitor-list');
+  this.form = document.getElementById('complete-setup-form');
 
   this.handlerMethods = new Map();
 }
@@ -55,7 +56,7 @@ SettingsView.prototype.bindGroup = function (event, handler) {
 SettingsView.prototype.bindSubmit = function(event, handler) {
   switch(event) {
     case 'submit':
-      addEventListener(this.submit, "click", () => handler());
+      addEventListener(this.form, "submit", (e) => handler([e, this.competitorList.files[0]]));
       break;
   }
 }
@@ -113,12 +114,19 @@ SettingsView.prototype.renderGroup = function (event, data) {
             dance.name,
             () => { this.handlerMethods.get('remove-dance-from-group')(dance.uuid) }
           ),
-          referenceUUID,
+          this.danceGroups.querySelector('#dance-group-item-' + referenceUUID)?.parentElement,
          );
       break;
     case 'addDanceHelper':
-      let referenceDance = this.danceGroups.querySelector('dance-group-item-' + {data});
-      this.danceGroups.insertBefore(this.generateDanceCardHelper, referenceDance);
+      let addDanceGroupUUID = data[0];
+      let addDanceReferenceUUID = data[1];
+      this.danceGroups.querySelector('#new-dance-dragged-helper')?.remove();
+
+      this.danceGroups.querySelector('#dance-group-' + addDanceGroupUUID)
+        .insertBefore(
+          this.template.generateDanceCardHelper(),
+          this.danceGroups.querySelector('#dance-group-item-' + addDanceReferenceUUID).parentElement
+         );
       break;
     case 'removeDanceCardHelper':
       this.danceGroups.querySelector('#new-dance-dragged-helper')?.remove();
@@ -148,7 +156,12 @@ SettingsView.prototype.bindDrag = function(event, handler) {
           if(e.y <= midpoint) {
             itemUUID = item.id.replace('dance-group-item-', '');
           } else {
-            itemUUID = item.parentElement?.nextSibling?.firstChild?.id.replace('dance-group-item-', '');
+            let tempItem = item.parentElement?.nextSibling?.firstChild;
+            if (tempItem?.id === 'new-dance-dragged-helper') {
+              itemUUID = tempItem?.parentElement?.nextSibling?.firstChild?.id.replace('dance-group-item-', '');
+            } else {
+              itemUUID = tempItem?.id?.replace('dance-group-item-', '');
+            }
           }
         }
         handler('dragGroup', uuid);

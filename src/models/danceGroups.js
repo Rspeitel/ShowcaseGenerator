@@ -6,11 +6,11 @@ export function DanceGroups() {
 
 DanceGroups.prototype.addGroup = function() {
   this.danceGroups.push(new DanceGroup());
-  return this.danceGroups.at(-1).uuid;
+  return this.danceGroups.at(-1);
 }
 
-DanceGroups.prototype.addDance = function(groupUUID, danceUUID, beforeDanceUUID) {
-  this.danceGroups.findByUUID(groupUUID)?.insertDance(danceUUID, beforeDanceUUID);
+DanceGroups.prototype.addDance = function(danceUUID, groupUUID, referenceUUID) {
+  this.danceGroups.findByUUID(groupUUID)?.insertDance(danceUUID, referenceUUID);
   return true;
 }
 
@@ -34,6 +34,10 @@ DanceGroups.prototype.toJSON = function() {
 
 DanceGroups.prototype.fromJSON = function(json) {
   this.danceGroups = JSON.parse(json);
+
+  this.danceGroups.forEach((group, index) => {
+    this.danceGroups[index] = Object.assign(new DanceGroup(), group)
+  })
 }
 
 class DanceGroup {

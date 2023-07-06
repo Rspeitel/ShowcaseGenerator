@@ -15,6 +15,7 @@ Event.prototype.toJSON = function () {
 
 Event.prototype.fromJSON = function(json) {
     this.dances.fromJSON(json.dances);
+    this.danceGroups.fromJSON(json.danceGroups);
   // this.dances = JSON.parse(json.dances);
   // this.dancers = JSON.parse(json.dancers);
   // this.entries = JSON.parse(json.entries);

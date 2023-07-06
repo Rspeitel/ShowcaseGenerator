@@ -10,7 +10,7 @@ export function SettingsTemplates() {
 
   this.danceGroupTemplate
     =     '<div id="dance-group-{{uuid}}" class="dance-group-card">'
-    +       '<input type="text" class="dance-group-title" placeholder="Dance Group">'
+    +       '<input type="text" class="dance-group-title" placeholder="Dance Group" value={{name}}>'
     +       '<button class="close-button close-button-dance-group material-symbols-outlined">close</button>'
     +     '</div>';
 
@@ -51,16 +51,17 @@ SettingsTemplates.prototype.generateDanceCard = function(dance, onChange, onClos
   return node;
 }
 
-SettingsTemplates.prototype.generateDanceGroup = function(uuid, onChange, onClose) {
+SettingsTemplates.prototype.generateDanceGroup = function(group, onChange, onClose) {
   let node = document.createElement('div');
   let view = this.danceGroupTemplate;
 
-  view = view.replace('{{uuid}}', uuid);
+  view = view.replace('{{uuid}}', group.uuid);
+  view = view.replace('{{name}}', group.name);
 
   node.innerHTML = view;
   node.querySelector('.dance-group-title').oninput = e => onChange(e.target.value);
 
-  node.querySelector('.close-button').onclick = (e) => onClose(uuid);
+  node.querySelector('.close-button').onclick = (e) => onClose(group.uuid);
 
   return node;
 }

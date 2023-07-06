@@ -15,5 +15,5 @@ import data from '../data/default.json' assert { type: "json" };
   }
 
   var ShowcaseGenerator = new App();
-  ShowcaseGenerator.settingsController.updateTable('init');
+  ShowcaseGenerator.settingsController.initView();
 })();
