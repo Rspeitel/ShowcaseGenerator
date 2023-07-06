@@ -1,5 +1,5 @@
 import { SettingsTemplates } from './template.js';
-import { getUUIDFromHtmlId } from '../../helpers.js';
+import { getUUIDFromHtmlId, addEventListener } from '../../helpers.js';
 
 export function SettingsView() {
   this.template = new SettingsTemplates();
@@ -12,10 +12,6 @@ export function SettingsView() {
   this.form = document.getElementById('complete-setup-form');
 
   this.handlerMethods = new Map();
-}
-
-function addEventListener(object, event, func) {
-  object.addEventListener(event, func);
 }
 
 SettingsView.prototype.bindTable = function (event, handler) {

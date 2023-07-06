@@ -19,7 +19,7 @@ export function SettingsController(event) {
   this.view.bindSubmit('submit', (data) => this.submit(data));
 }
 
-SettingsController.prototype.initView = function () {
+SettingsController.prototype.init = function () {
   this.event.dances.dances.forEach(dance => this.view.renderTable('newDance', dance));
 
   this.event.danceGroups.danceGroups.forEach(group => {

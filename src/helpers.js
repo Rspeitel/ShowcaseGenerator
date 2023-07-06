@@ -19,6 +19,10 @@ export function getUUIDFromHtmlId(id) {
   return id;
 }
 
+export function addEventListener(object, event, func) {
+  object.addEventListener(event, func);
+}
+
 export function GlobalHelpers() {
   Array.prototype.insert = function (index, ...items) {
     this.splice(index, 0, ...items);

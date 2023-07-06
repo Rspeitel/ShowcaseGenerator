@@ -1,5 +1,5 @@
 import { GlobalHelpers } from './helpers.js';
-import { SettingsController } from './pages/settings/controller.js';
+import { AppController } from './controller.js';
 import { Event } from './event.js';
 import data from '../data/default.json' assert { type: "json" };
 
@@ -11,9 +11,9 @@ import data from '../data/default.json' assert { type: "json" };
     GlobalHelpers();
     this.event = new Event();
     this.event.fromJSON(data);
-    this.settingsController = new SettingsController(this.event);
+    this.appController = new AppController(this.event);
   }
 
   var ShowcaseGenerator = new App();
-  ShowcaseGenerator.settingsController.initView();
+  ShowcaseGenerator.appController.init();
 })();
