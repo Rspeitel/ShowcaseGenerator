@@ -23,6 +23,12 @@ export function addEventListener(object, event, func) {
   object.addEventListener(event, func);
 }
 
+export function removeAllChildren(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}
+
 export function GlobalHelpers() {
   Array.prototype.insert = function (index, ...items) {
     this.splice(index, 0, ...items);

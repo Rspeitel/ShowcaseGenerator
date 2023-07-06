@@ -33,11 +33,24 @@ export function AppTemplates() {
     +  '  </form>'
     +  '</div>'
     +  '</main>';
+
+  this.eventTemplate
+    = '<main class="main-content" id="main-content">'
+    +  '<h3>Event Page</h3>'
+    +  '<hr>'
+    + '</main>';
 }
 
 AppTemplates.prototype.generateSettings = function() {
   var node = document.createElement('div');
   node.innerHTML= this.settingsTemplate;
+
+  return node;
+}
+
+AppTemplates.prototype.generateEvent = function() {
+  var node = document.createElement('div');
+  node.innerHTML= this.eventTemplate;
 
   return node;
 }
