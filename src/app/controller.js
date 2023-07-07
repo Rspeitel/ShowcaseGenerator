@@ -1,5 +1,5 @@
 import { AppView } from './view.js';
-import { SettingsController } from './pages/settings/controller.js';
+import { SettingsController } from '../pages/settings/controller.js';
 
 export function AppController(event) {
   this.event = event;

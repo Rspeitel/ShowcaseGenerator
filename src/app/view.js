@@ -1,5 +1,5 @@
 import { AppTemplates } from './template.js';
-import { addEventListener, removeAllChildren } from './helpers.js';
+import { addEventListener, removeAllChildren } from '../helpers.js';
 
 export function AppView() {
   this.template = new AppTemplates();

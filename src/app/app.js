@@ -1,7 +1,7 @@
-import { GlobalHelpers } from './helpers.js';
+import { GlobalHelpers } from '../helpers.js';
 import { AppController } from './controller.js';
-import { Event } from './event.js';
-import data from '../data/default.json' assert { type: "json" };
+import { Event } from '../event.js';
+import data from '../../data/default.json' assert { type: "json" };
 
 (function () {
   'use strict';
