@@ -196,3 +196,37 @@ main {
 .close-button:hover {
   background-color: var(--light-grey);
 }
+
+
+/* Event */ 
+
+/* Dancer Tables */
+
+.dancer-table {
+  height: 75%;
+  margin: 8px;
+}
+
+.dancer-card-table-content {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.dancer-card-header {
+  font-weight: 700;
+}
+
+.dancer-card {
+  display: grid;
+  grid-template-columns: 30% 50% 15%;
+  align-items: end;
+  border: 1px solid var(--grey);
+  margin: 8px 0 8px 0;
+  padding: 8px;
+  justify-items: center;
+}
+
+.add-dancer {
+  width: 100%;
+}
+/* End Event */

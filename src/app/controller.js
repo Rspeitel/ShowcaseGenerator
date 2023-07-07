@@ -1,5 +1,6 @@
 import { AppView } from './view.js';
 import { SettingsController } from '../pages/settings/controller.js';
+import { EventController } from '../pages/event/controller.js';
 
 export function AppController(event) {
   this.event = event;
@@ -20,7 +21,7 @@ AppController.prototype.navigate = function(key) {
       this.activeController = new SettingsController(this.event);
       break;
     case 'event':
-      //this.activeController = new EventsController(this.event);
+      this.activeController = new EventController(this.event);
       break;
   }
 

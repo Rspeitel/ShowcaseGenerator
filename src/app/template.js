@@ -38,6 +38,18 @@ export function AppTemplates() {
     = '<main class="main-content" id="main-content">'
     +  '<h3>Event Page</h3>'
     +  '<hr>'
+    +  '<h3>Dancers</h3'
+    +  '<hr>'
+    +  '  <div class="dancers-table">'
+    +  '    <div class="dancer-card dancer-card-header">'
+    +  '      <div>Name</div>'
+    +  '      <div></div>'
+    +  '      <div class="edit-button material-symbols-outlined">edit</div>'
+    +  '    </div>'
+    +  '    <div id="dancer-table" class="dancer-card-table-content">'
+    +  '      <button id="add-dancer-button" class="add-dancer"><span class="material-symbols-outlined">add</span>Add Dancer</button>'
+    +  '    </div>'
+    +  '  </div>'
     + '</main>';
 }
 

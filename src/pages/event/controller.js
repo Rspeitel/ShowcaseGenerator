@@ -1,6 +1,7 @@
 import { EventView } from './view.js';
 
-export function EventController() {
+export function EventController(event) {
+  this.event = event;
   this.view = new EventView();
 
 
@@ -8,8 +9,6 @@ export function EventController() {
   // this.view.bind('item', () => this.updateThing('item'));
 }
 
-
-// All Controllers have an init function
 EventController.prototype.init = function() {
-  
+  this.event.dancers.dancers.forEach(dancer => this.view.renderDancerTable('newDancer', dancer));
 }
