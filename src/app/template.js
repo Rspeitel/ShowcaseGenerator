@@ -36,18 +36,24 @@ export function AppTemplates() {
 
   this.eventTemplate
     = '<main class="main-content" id="main-content">'
-    +  '<h3>Event Page</h3>'
+    +  '<h3>Event</h3>'
     +  '<hr>'
-    +  '<h3>Dancers</h3'
+    + '</main>';
+
+  this.dancersTemplate
+    = '<main class="main-content" id="main-content">'
+    +  '<h3>Dancers</h3>'
+    +  '<button id="add-dancer-button" class="add-dancer"><span class="material-symbols-outlined">add</span>Add Dancer</button>'
     +  '<hr>'
-    +  '  <div class="dancers-table">'
+    +  '  <div class="dancer-table">'
     +  '    <div class="dancer-card dancer-card-header">'
-    +  '      <div>Name</div>'
+    +  '      <div>Bib</div>'
+    +  '      <div class="dancer-name">Name</div>'
     +  '      <div></div>'
-    +  '      <div class="edit-button material-symbols-outlined">edit</div>'
+    +  '      <div></div>'
+    +  '      <div></div>'
     +  '    </div>'
     +  '    <div id="dancer-table" class="dancer-card-table-content">'
-    +  '      <button id="add-dancer-button" class="add-dancer"><span class="material-symbols-outlined">add</span>Add Dancer</button>'
     +  '    </div>'
     +  '  </div>'
     + '</main>';
@@ -63,6 +69,13 @@ AppTemplates.prototype.generateSettings = function() {
 AppTemplates.prototype.generateEvent = function() {
   var node = document.createElement('div');
   node.innerHTML= this.eventTemplate;
+
+  return node;
+}
+
+AppTemplates.prototype.generateDancers = function() {
+  var node = document.createElement('div');
+  node.innerHTML= this.dancersTemplate;
 
   return node;
 }

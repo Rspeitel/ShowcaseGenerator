@@ -10,5 +10,4 @@ export function EventController(event) {
 }
 
 EventController.prototype.init = function() {
-  this.event.dancers.dancers.forEach(dancer => this.view.renderDancerTable('newDancer', dancer));
 }

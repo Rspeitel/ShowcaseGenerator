@@ -13,19 +13,15 @@ export function AppView() {
 AppView.prototype.bindNav = function (event, handler) {
   switch(event) {
     case 'settings':
-      addEventListener(this.settingsNav, "click", () => {
-        this.removeActive();
-        this.settingsNav.classList.add('nav-active');
-        handler();
-      })
+      addEventListener(this.settingsNav, "click", () => handler());
       break;
 
     case 'event':
-      addEventListener(this.eventNav, "click", () => {
-        this.removeActive();
-        this.eventNav.classList.add('nav-active');
-        handler();
-      })
+      addEventListener(this.eventNav, "click", () => handler());
+      break;
+
+    case 'dancers':
+      addEventListener(this.dancersNav, "click", () => handler());
       break;
   }
 }
@@ -40,15 +36,21 @@ AppView.prototype.navigate = function (location) {
   let template = null;
   switch(location) {
     case 'settings':
+      this.removeActive();
+      this.settingsNav.classList.add('nav-active');
       template = this.template.generateSettings();
       break;
 
     case 'event': 
+      this.removeActive();
+      this.eventNav.classList.add('nav-active');
       template = this.template.generateEvent();
       break;
 
     case 'dancers':
-
+      this.removeActive();
+      this.dancersNav.classList.add('nav-active');
+      template = this.template.generateDancers();
       break;
   }
   removeAllChildren(this.body);

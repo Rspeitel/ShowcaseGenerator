@@ -1,6 +1,7 @@
 import { AppView } from './view.js';
 import { SettingsController } from '../pages/settings/controller.js';
 import { EventController } from '../pages/event/controller.js';
+import { DancersController } from '../pages/dancers/controller.js';
 
 export function AppController(event) {
   this.event = event;
@@ -10,6 +11,7 @@ export function AppController(event) {
 
   this.view.bindNav('settings', () => this.navigate('settings'));
   this.view.bindNav('event', () => this.navigate('event'));
+  this.view.bindNav('dancers', () => this.navigate('dancers'));
 }
 
 AppController.prototype.navigate = function(key) {
@@ -23,12 +25,15 @@ AppController.prototype.navigate = function(key) {
     case 'event':
       this.activeController = new EventController(this.event);
       break;
+    case 'dancers':
+      this.activeController = new DancersController(this.event);
+      break;
   }
 
   this.activeController.init();
 }
 
 AppController.prototype.init = function() {
-  this.navigate('settings');
+  this.navigate('dancers');
 }
 

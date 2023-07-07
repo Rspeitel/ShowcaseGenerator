@@ -8,14 +8,9 @@ export function EventView() {
 
 }
 
-EventView.prototype.bindDancerTable = function (event, handler) {
+EventView.prototype.bind = function (event, handler) {
 
 }
 
-EventView.prototype.renderDancerTable = function (event, data) {
-  switch(event) {
-    case 'newDancer':
-      this.dancerTable.insertBefore(this.template.generateDancerCard(data), this.addDancerButton);
-      break;
-  }
+EventView.prototype.render = function (event, data) {
 }

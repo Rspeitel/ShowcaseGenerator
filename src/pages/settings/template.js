@@ -1,7 +1,7 @@
 export function SettingsTemplates() {
   this.danceCardTemplate
     =     '<div id="dance-{{uuid}}" draggable=true class="dance-card">'
-    +       '<button class="close-button material-symbols-outlined">close</button>'
+    +       '<button class="close-button icon-button material-symbols-outlined">close</button>'
     +       '<span class="drag-indicator material-symbols-outlined">drag_indicator</span>'
     +       '<input id="name" type="text" placeholder="dance" value="{{danceName}}">'
     +       '<input id="dance-max" type="number" placeholder=0 value={{danceMax}}>'
@@ -11,7 +11,7 @@ export function SettingsTemplates() {
   this.danceGroupTemplate
     =     '<div id="dance-group-{{uuid}}" class="dance-group-card">'
     +       '<input type="text" class="dance-group-title" placeholder="Dance Group" value={{name}}>'
-    +       '<button class="close-button close-button-dance-group material-symbols-outlined">close</button>'
+    +       '<button class="close-button icon-button close-button-dance-group material-symbols-outlined">close</button>'
     +     '</div>';
 
 
@@ -21,7 +21,7 @@ export function SettingsTemplates() {
     +         '<span class="drag-indicator material-symbols-outlined">drag_indicator</span>'
     +         '<span class="title">{{dance}}</span>'
     +       '</span>'
-    +       '<button class="close-button close-button-group-item material-symbols-outlined">close</button>'
+    +       '<button class="close-button icon-button close-button-group-item material-symbols-outlined">close</button>'
     +     '</div>';
 
   this.danceGroupItemHelper

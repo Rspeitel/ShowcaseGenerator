@@ -179,7 +179,7 @@ main {
   left: 216;
 }
 
-.close-button {
+.icon-button {
   background: none;
   border: none;
   border-radius: 50%;
@@ -193,12 +193,9 @@ main {
   margin-left: 8px;
 }
 
-.close-button:hover {
+.icon-button:hover {
   background-color: var(--light-grey);
 }
-
-
-/* Event */ 
 
 /* Dancer Tables */
 
@@ -218,7 +215,7 @@ main {
 
 .dancer-card {
   display: grid;
-  grid-template-columns: 30% 50% 15%;
+  grid-template-columns: 10% 60% auto 25px 25px;
   align-items: end;
   border: 1px solid var(--grey);
   margin: 8px 0 8px 0;
@@ -226,7 +223,15 @@ main {
   justify-items: center;
 }
 
+.dancer-name {
+  width: 100%
+}
+
 .add-dancer {
   width: 100%;
+}
+
+.dancer-bib {
+  width: 3.5ch;
 }
 /* End Event */
