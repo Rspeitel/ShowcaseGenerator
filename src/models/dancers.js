@@ -5,8 +5,12 @@ export function Dancers() {
 }
 
 Dancers.prototype.create = function(name) {
-  this.dancers.push(new Dancer(name));
-  return this.dancers.at(-1);
+  if (this.dancers.findBy('name', name) === undefined) {
+    this.dancers.push(new Dancer(name));
+    return this.dancers.at(-1);
+  }
+
+  return this.dancers.findBy('name', name);
 }
 
 Dancers.prototype.find = function(uuid) {

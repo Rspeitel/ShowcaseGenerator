@@ -47,6 +47,10 @@ export function GlobalHelpers() {
     return this.indexOf(this.find(element => element.uuid === uuid));
   }
 
+  Array.prototype.findBy = function(key, value) {
+    return this.find(element => element[key] === value);
+  }
+
   Array.prototype.findByUUID = function (uuid) {
     return this.find(element => element.uuid === uuid);
   }

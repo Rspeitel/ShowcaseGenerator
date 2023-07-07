@@ -108,12 +108,29 @@ SettingsController.prototype.updateDrag = function (event, data) {
 
 SettingsController.prototype.submit = function(data) {
   data[0].preventDefault();
+  let self = this;
+
   const reader = new FileReader();
    reader.onload = function (e) {
     const text = e.target.result;
-    console.log(text);
+    self.parseDancers(text);
   };
 
   reader.readAsText(data[1]);
   console.log(this.event.toJSON());
+}
+
+SettingsController.prototype.parseDancers = function(data) {
+  const parsedData = data.split('\r\n').map((row) => row.split(','));
+  // TODO: Check header
+  const header = parsedData.shift();
+  const leaderColumn = 0;
+  const followerColumn = 1;
+
+  parsedData.forEach((row) => {
+    //Use the data to generate dancers
+    let leader = this.event.dancers.create(row[leaderColumn]);
+    let follower = this.event.dancers.create(row[followerColumn]);
+    //TODO: Use the data to generate entries
+  });
 }
