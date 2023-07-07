@@ -8,6 +8,14 @@ export function Event() {
   this.dancers = new Dancers();
 }
 
+Event.prototype.deleteDancer = function (uuid) {
+  this.dancers.remove(uuid);
+  //TODO Remove entries involving dancer
+  //TODO Remove entries from heats involving dancer
+  
+  return true;
+}
+
 Event.prototype.toJSON = function () {
   return JSON.stringify({
     dances: this.dances.toJSON(),

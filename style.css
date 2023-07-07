@@ -200,7 +200,7 @@ main {
 /* Dancer Tables */
 
 .dancer-table {
-  height: 75%;
+  height: 65%;
   margin: 8px;
 }
 
@@ -233,5 +233,25 @@ main {
 
 .dancer-bib {
   width: 3.5ch;
+}
+
+.button {
+  background: none;
+  border-width: 2px;
+  margin: 8px;
+  padding: 8px;
+}
+
+.button + button:hover {
+
+}
+
+.confirm-delete {
+  color: red;
+}
+
+.confirm-modal-button-wrapper {
+  display: flex;
+  justify-content: flex-end;
 }
 /* End Event */

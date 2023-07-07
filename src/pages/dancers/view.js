@@ -5,6 +5,7 @@ export function DancersView() {
   
   this.dancerTable = document.getElementById('dancer-table');
   this.addDancerButton = document.getElementById('add-dancer-button');
+  this.modal = document.getElementById('modal');
 
   this.handlerMethods = new Map();
 }
@@ -18,6 +19,14 @@ DancersView.prototype.bindDancerTable = function (event, handler) {
     case 'saveDancer':
       this.handlerMethods.set('save-dancer-from-table', handler);
       break;
+
+    case 'confirmModal':
+      this.handlerMethods.set('delete-dancer-from-table', handler);
+      break;
+
+    case 'confirmDelete':
+      this.handlerMethods.set('confirm-delete-from-table', handler);
+      break;
   }
 }
 
@@ -27,7 +36,7 @@ DancersView.prototype.renderDancerTable = function (event, data) {
       let newTemplate = this.template.generateDancerCard(
         data,
         this.handlerMethods.get('edit-dancer-from-table'),
-        null
+        this.handlerMethods.get('delete-dancer-from-table'),
       );
       this.dancerTable.appendChild(newTemplate);
       break;
@@ -44,14 +53,27 @@ DancersView.prototype.renderDancerTable = function (event, data) {
 
     case 'saveDancer': 
       let saveTarget = this.dancerTable.querySelector('#dancer-' + data.uuid);
-      debugger;
       let saveTemplate = this.template.generateDancerCard(
         data,
         this.handlerMethods.get('edit-dancer-from-table'),
-        null,
+        this.handlerMethods.get('delete-dancer-from-table'),
       );
       this.dancerTable.insertBefore(saveTemplate, saveTarget);
       this.dancerTable.removeChild(saveTarget);
+      break;
+
+    case 'confirmModal':
+      this.template.generateConfirmDeleteModal(
+        data,
+        this.handlerMethods.get('confirm-delete-from-table'),
+      );
+      this.modal.showModal();
+      break;
+
+    case 'deleteDancer':
+      this.modal.close();
+      let deleteTarget = this.dancerTable.querySelector('#dancer-' + data);
+      this.dancerTable.removeChild(deleteTarget);
       break;
   }
 }

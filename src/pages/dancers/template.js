@@ -12,6 +12,31 @@ export function DancersTemplates() {
     +       '<div></div>'
     +       '<div></div>'
     +       '<button class="save-button icon-button material-symbols-outlined">save</button>';
+
+  this.confirmDeleteModalTemplate
+    =       '<div id="confirm-delete-{{uuid}}">'
+    +       '<div>Deleting {{name}} will also remove all entries they are apart of.</div>'
+    +       '<div>Are you sure you want to continue?</div>'
+    +       '<div class=confirm-modal-button-wrapper>'
+    +         '<button class="button" id="cancel-delete">Cancel</button>'
+    +         '<button class="button confirm-delete" id="confirm-delete">Confirm</button>'
+    +       '</div>';
+}
+
+DancersTemplates.prototype.generateConfirmDeleteModal = function(dancer, confirmHandler) {
+  let node = document.getElementById('modal');
+
+  let view = this.confirmDeleteModalTemplate;
+  view = view.replace('{{uuid}}', dancer.uuid);
+  view = view.replace('{{name}}', dancer.name);
+
+
+
+  node.innerHTML = view;
+  node.querySelector('#confirm-delete').onclick = (e) => confirmHandler(dancer.uuid);
+  node.querySelector('#cancel-delete').onclick = (e) => node.close();
+
+  return node;
 }
 
 DancersTemplates.prototype.generateDancerEdit = function(dancer, saveHandler) {
