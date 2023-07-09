@@ -110,7 +110,7 @@ main {
   height: 100%;
 }
 
-.dance-card-header {
+.card-header {
   font-weight: 700;
 }
 
@@ -209,10 +209,6 @@ main {
   height: 100%;
 }
 
-.dancer-card-header {
-  font-weight: 700;
-}
-
 .dancer-card {
   display: grid;
   grid-template-columns: 10% 60% auto 25px 25px;
@@ -228,7 +224,7 @@ main {
 }
 
 .add-dancer {
-  width: 100%;
+  width: 250px;
 }
 
 .dancer-bib {
@@ -254,4 +250,30 @@ main {
   display: flex;
   justify-content: flex-end;
 }
-/* End Event */
+/* Event */
+
+.entries-table {
+  height: 65%;
+  margin: 8px;
+}
+
+.entries-card-table-content {
+  overflow-y: auto;
+  height: 100%;
+}
+
+.entries-name {
+  width: 100%;
+}
+
+.entries-card {
+  display: grid;
+  grid-template-columns: 5ch auto auto auto 8ch auto;
+  align-items: end;
+  border: 1px solid var(--grey);
+  margin: 8px 0 8px 0;
+  padding: 8px;
+  justify-items: center;
+}
+
+

@@ -8,7 +8,7 @@ export function AppTemplates() {
     +  '<hr>'
     +  '<div class="settings-dances">'
     +  '  <div class="dance-table">'
-    +  '    <div class="dance-card dance-card-header">'
+    +  '    <div class="dance-card card-header">'
     +  '      <div></div>'
     +  '      <div></div>'
     +  '      <div>Dance</div>'
@@ -38,6 +38,18 @@ export function AppTemplates() {
     = '<main class="main-content" id="main-content">'
     +  '<h3>Event</h3>'
     +  '<hr>'
+    +  '<h3>Entries</h3>'
+    +  '  <div class="entries-table">'
+    +  '    <div class="entries-card card-header">'
+    +  '      <div>Bib</div>'
+    +  '      <div class="entries-name">Leader</div>'
+    +  '      <div class="entries-name">Follower</div>'
+    +  '      <div class="entries-name">Dance</div>'
+    +  '      <div>Heat #</div>'
+    +  '    </div>'
+    +  '    <div id="dancer-table" class="dancer-card-table-content">'
+    +  '    </div>'
+    +  '  </div>'
     + '</main>';
 
   this.dancersTemplate
@@ -46,7 +58,7 @@ export function AppTemplates() {
     +  '<button id="add-dancer-button" class="add-dancer"><span class="material-symbols-outlined">add</span>Add Dancer</button>'
     +  '<hr>'
     +  '  <div class="dancer-table">'
-    +  '    <div class="dancer-card dancer-card-header">'
+    +  '    <div class="dancer-card card-header">'
     +  '      <div>Bib</div>'
     +  '      <div class="dancer-name">Name</div>'
     +  '      <div></div>'
@@ -56,7 +68,7 @@ export function AppTemplates() {
     +  '    <div id="dancer-table" class="dancer-card-table-content">'
     +  '    </div>'
     +  '  </div>'
-    + '</main>';
+    + '</main>'
 }
 
 AppTemplates.prototype.generateSettings = function() {
