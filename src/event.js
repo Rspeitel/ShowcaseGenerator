@@ -1,11 +1,13 @@
 import { Dances } from './models/dances.js';
 import { DanceGroups } from './models/danceGroups.js';
 import { Dancers } from './models/dancers.js';
+import { Entries } from './models/entries.js';
 
 export function Event() {
   this.dances = new Dances();
   this.danceGroups = new DanceGroups();
   this.dancers = new Dancers();
+  this.entries = new Entries();
 }
 
 Event.prototype.deleteDancer = function (uuid) {

@@ -10,7 +10,7 @@ DanceGroups.prototype.addGroup = function() {
 }
 
 DanceGroups.prototype.addDance = function(danceUUID, groupUUID, referenceUUID) {
-  this.danceGroups.findByUUID(groupUUID)?.insertDance(danceUUID, referenceUUID);
+  this.danceGroups.findBy('uuid', groupUUID)?.insertDance(danceUUID, referenceUUID);
   return true;
 }
 
@@ -25,7 +25,7 @@ DanceGroups.prototype.removeDance = function(uuid) {
 }
 
 DanceGroups.prototype.updateGroup = function(uuid, name) {
-  this.danceGroups.findByUUID(uuid).name = name;
+  this.danceGroups.findBy('uuid', uuid).name = name;
 }
 
 DanceGroups.prototype.toJSON = function() {

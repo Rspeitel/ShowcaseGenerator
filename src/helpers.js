@@ -36,29 +36,25 @@ export function GlobalHelpers() {
 
   Array.prototype.insertBefore = function (element, reference) {
     let index = null;
-    if(nullCheck(element?.uuid)) { index = this.findIndexByUUID(element); }
+    if(nullCheck(element?.uuid)) { index = this.findIndexBy('uuid', element); }
     else { index = this.indexOf(element); }
 
     if(nullCheck(reference)) { this.insert(index, element); }
     else { this.push(element); }
   }
 
-  Array.prototype.findIndexByUUID = function(uuid) {
-    return this.indexOf(this.find(element => element.uuid === uuid));
+  Array.prototype.findIndexBy = function(key, value) {
+    return this.indexOf(this.find(element => element[key] === value));
   }
 
   Array.prototype.findBy = function(key, value) {
     return this.find(element => element[key] === value);
   }
 
-  Array.prototype.findByUUID = function (uuid) {
-    return this.find(element => element.uuid === uuid);
-  }
-
   Array.prototype.remove = function (element) {
     let index = null;
 
-    if(nullCheck(this.at(0)?.uuid)) { index = this.findIndexByUUID(element); }
+    if(nullCheck(this.at(0)?.uuid)) { index = this.findIndexBy('uuid', element); }
     else { index = this.indexOf(element); }
 
     if (index > -1) { this.splice(index, 1); }

@@ -6,7 +6,6 @@ import data from '../../data/default.json' assert { type: "json" };
 (function () {
   'use strict';
 
-
   function App() {
     GlobalHelpers();
     this.event = new Event();

@@ -1,31 +1,35 @@
-
-export function Base(object, newObjectFn) {
-  this.object = object;
-  this.newObjectFn = newObjectFn;
+export function Base(modelDef) {
+  this.elements = [];
+  this.modelDef = modelDef;
 }
 
-Entries.prototype.create = function(data) {
-  this.object.push(newObjectFn(data))
+Base.prototype.create = function(data) {
+  this.elements.push(new this.modelDef(data));
+  return this.elements.at(-1);
 }
 
-Entries.prototype.find = function(uuid) {
-  return this.object.findByUUID(uuid);
+Base.prototype.findBy = function(key, value) {
+  return this.elements.findBy(key, value);
 }
 
-Entries.prototype.remove = function(uuid) {
-  this.object.remove(uuid);
+Base.prototype.find = function(uuid) {
+  return this.elements.findBy('uuid', uuid);
+}
+
+Base.prototype.remove = function(uuid) {
+  this.elements.remove(uuid);
   return true;
 }
 
-Entries.prototype.toJSON = function() {
-  return JSON.stringify(this.object);
+Base.prototype.toJSON = function() {
+  return JSON.stringify(this.elements);
 }
 
-Entries.prototype.fromJSON = function(json) {
-  this.object = JSON.parse(json);
+Base.prototype.fromJSON = function(json) {
+  this.elements = JSON.parse(json);
 
-  this.object.forEach((entry, index) => {
-    this.object[index] = Object.assign(new , entry);
+  this.elements.forEach((entry, index) => {
+    this.elements[index] = Object.assign(new this.modelDef(), entry);
   });
 }
 

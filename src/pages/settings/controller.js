@@ -20,7 +20,7 @@ export function SettingsController(event) {
 }
 
 SettingsController.prototype.init = function () {
-  this.event.dances.dances.forEach(dance => this.view.renderTable('newDance', dance));
+  this.event.dances.elements.forEach(dance => this.view.renderTable('newDance', dance));
 
   this.event.danceGroups.danceGroups.forEach(group => {
     this.view.renderGroup('addGroup', group);
@@ -37,7 +37,8 @@ SettingsController.prototype.updateTable = function (event, data) {
     case 'update':
       let uuid = data[0];
       let event = data[1];
-      let danceToUpdate = this.event.dances.update(uuid, event.srcElement.id, event.srcElement.value);
+      let danceToUpdate = this.event.dances.find(uuid)
+      danceToUpdate.update(event.srcElement.id, event.srcElement.value);
 
       if (event.srcElement.id === 'name') { this.view.renderGroup('updateDance', [uuid, danceToUpdate.name]) }
       break;
@@ -129,8 +130,8 @@ SettingsController.prototype.parseDancers = function(data) {
 
   parsedData.forEach((row) => {
     //Use the data to generate dancers
-    let leader = this.event.dancers.create(row[leaderColumn]);
-    let follower = this.event.dancers.create(row[followerColumn]);
+    let leader = this.event.dancers.findOrCreateByName(row[leaderColumn]);
+    let follower = this.event.dancers.findOrCreateByName(row[followerColumn]);
     //TODO: Use the data to generate entries
   });
 }
