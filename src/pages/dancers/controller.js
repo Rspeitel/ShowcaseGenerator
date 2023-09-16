@@ -36,5 +36,5 @@ DancersController.prototype.updateDancerTable = function(event, data) {
 }
 
 DancersController.prototype.init = function() {
-  this.event.dancers.dancers.forEach(dancer => this.view.renderDancerTable('newDancer', dancer));
+  this.event.dancers.elements.forEach(dancer => this.view.renderDancerTable('newDancer', dancer));
 }

@@ -197,6 +197,22 @@ main {
   background-color: var(--light-grey);
 }
 
+/* Entry Table */
+.entries-table {
+  height: 65%;
+  margin: 8px;
+}
+
+.entry-card {
+  display: grid;
+  grid-template-columns: 10% 10% auto auto auto 25px 25px;
+  align-items: end;
+  border: 1px solid var(--grey);
+  margin: 8px 0 8px 0;
+  padding: 8px;
+  justify-items: center;
+}
+
 /* Dancer Tables */
 
 .dancer-table {

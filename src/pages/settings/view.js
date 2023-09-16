@@ -10,6 +10,7 @@ export function SettingsView() {
   this.addDanceGroup = document.getElementById('add-dance-group');
   this.competitorList = document.getElementById('competitor-list');
   this.form = document.getElementById('complete-setup-form');
+  this.export = document.getElementById('export-json');
 
   this.handlerMethods = new Map();
 }
@@ -53,6 +54,9 @@ SettingsView.prototype.bindSubmit = function(event, handler) {
   switch(event) {
     case 'submit':
       addEventListener(this.form, "submit", (e) => handler([e, this.competitorList.files[0]]));
+      break;
+    case 'export': 
+      addEventListener(this.export, "click", (e) => handler());
       break;
   }
 }

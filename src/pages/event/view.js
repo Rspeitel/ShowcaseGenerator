@@ -2,15 +2,21 @@ import { EventTemplates } from './template.js';
 
 export function EventView() {
   this.template = new EventTemplates();
-  
-  this.dancerTable = document.getElementById('dancer-table');
-  this.addDancerButton = document.getElementById('add-dancer-button');
 
+  this.entriesTable = document.getElementById('entries-table');
 }
 
-EventView.prototype.bind = function (event, handler) {
-
+EventView.prototype.bindEntriesTable = function (event, handler) {
+  switch(event) {
+  }
 }
 
-EventView.prototype.render = function (event, data) {
+EventView.prototype.renderEntriesTable = function (event, data) {
+  switch(event) {
+    case 'newEntry':
+      let newTemplate = this.template.generateEntryCard(data);
+      this.entriesTable.appendChild(newTemplate);
+      break;
+  }
+
 }

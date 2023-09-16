@@ -10,6 +10,20 @@ export function Event() {
   this.entries = new Entries();
 }
 
+Event.prototype.getReadableEntry = function (entry) {
+  let leader = this.dancers.find(entry.leaderUUID);
+  let follower = this.dancers.find(entry.followerUUID);
+  let dance = this.dances.find(entry.danceUUID);
+
+  return {
+    leaderName: leader?.name,
+    followerName: follower?.name,
+    bibNumber: leader?.bibNumber,
+    dance: dance?.name,
+    heatNumber: '0',
+  };
+}
+
 Event.prototype.deleteDancer = function (uuid) {
   this.dancers.remove(uuid);
   //TODO Remove entries involving dancer
@@ -23,6 +37,7 @@ Event.prototype.toJSON = function () {
     dances: this.dances.toJSON(),
     danceGroups: this.danceGroups.toJSON(),
     dancers: this.dancers.toJSON(),
+    entries: this.entries.toJSON(),
   });
 }
 
@@ -30,8 +45,8 @@ Event.prototype.fromJSON = function(json) {
     this.dances.fromJSON(json.dances);
     this.danceGroups.fromJSON(json.danceGroups);
     this.dancers.fromJSON(json.dancers);
+    this.entries.fromJSON(json.entries);
   // this.dancers = JSON.parse(json.dancers);
-  // this.entries = JSON.parse(json.entries);
   // this.heats = JSON.parse(json.heats);
   //this.danceGroups = parsedJson.danceGroups;
 }

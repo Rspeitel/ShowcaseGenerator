@@ -25,7 +25,7 @@ Dancers.prototype.updateAll = function(dancer) {
 }
 
 Dancers.prototype.findOrCreateByName = function(name) {
-  let dancer = this.elements.findBy(key, value);
+  let dancer = this.elements.findBy('name', name);
 
   if(nullCheck(dancer)) { return dancer; }
   else { return this.create(name) }

@@ -17,6 +17,7 @@ export function SettingsController(event) {
   this.view.bindGroup('updateGroup', (data) => this.updateGroups('updateGroup', data));
   this.view.bindDrag('drag', (event, uuid) => this.updateDrag(event, uuid));
   this.view.bindSubmit('submit', (data) => this.submit(data));
+  this.view.bindSubmit('export', () => this.exportJSON());
 }
 
 SettingsController.prototype.init = function () {
@@ -118,7 +119,6 @@ SettingsController.prototype.submit = function(data) {
   };
 
   reader.readAsText(data[1]);
-  console.log(this.event.toJSON());
 }
 
 SettingsController.prototype.parseDancers = function(data) {
@@ -132,6 +132,20 @@ SettingsController.prototype.parseDancers = function(data) {
     //Use the data to generate dancers
     let leader = this.event.dancers.findOrCreateByName(row[leaderColumn]);
     let follower = this.event.dancers.findOrCreateByName(row[followerColumn]);
-    //TODO: Use the data to generate entries
+    for (let columnIndex = 2; columnIndex < header.length; columnIndex++) {
+      let dance = this.event.dances.findBy('name', header[columnIndex]);
+
+      for (let numberOfEntries = 0; numberOfEntries < row[columnIndex]; numberOfEntries++) {
+        this.event.entries.create({
+          leaderUUID: leader.uuid,
+          followerUUID: follower.uuid,
+          danceUUID: dance.uuid
+        });
+      }
+    }
   });
+}
+
+SettingsController.prototype.exportJSON = function() {
+  console.log(this.event.toJSON());
 }

@@ -31,6 +31,7 @@ export function AppTemplates() {
     +  '    <input type="file" id="competitor-list" name="compeitor-list" accept=".csv">'
     +  '    <input type="submit" id="complete-setup" />'
     +  '  </form>'
+    +  ' <button id="export-json"> Export JSON </button>'
     +  '</div>'
     +  '</main>';
 
@@ -40,14 +41,14 @@ export function AppTemplates() {
     +  '<hr>'
     +  '<h3>Entries</h3>'
     +  '  <div class="entries-table">'
-    +  '    <div class="entries-card card-header">'
+    +  '    <div class="entry-card card-header">'
+    +  '      <div>Heat #</div>'
     +  '      <div>Bib</div>'
     +  '      <div class="entries-name">Leader</div>'
     +  '      <div class="entries-name">Follower</div>'
     +  '      <div class="entries-name">Dance</div>'
-    +  '      <div>Heat #</div>'
     +  '    </div>'
-    +  '    <div id="dancer-table" class="dancer-card-table-content">'
+    +  '    <div id="entries-table" class="entries-table">'
     +  '    </div>'
     +  '  </div>'
     + '</main>';

@@ -1,12 +1,12 @@
 import { Base } from './base.js';
 import { createUUID } from '../helpers.js';
 
-function Entry(_data) {
+function Entry(data) {
   this.uuid = createUUID();
-  this.leader = null;
-  this.folower = null;
-  this.dance = null;
-  this.heat = null;
+  this.leaderUUID = data?.leaderUUID;
+  this.followerUUID = data?.followerUUID;
+  this.danceUUID = data?.danceUUID;
+  this.heatUUID = null;
 }
 
 export function Entries() {
