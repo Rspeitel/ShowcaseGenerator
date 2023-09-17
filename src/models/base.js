@@ -8,6 +8,10 @@ Base.prototype.create = function(data) {
   return this.elements.at(-1);
 }
 
+Base.prototype.filter = function(key, value) {
+  return this.elements.filter((element) => element[key] === value);
+}
+
 Base.prototype.findBy = function(key, value) {
   return this.elements.findBy(key, value);
 }
