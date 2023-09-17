@@ -1,5 +1,6 @@
 import { GlobalHelpers } from '../src/helpers.js';
-import { BaseTestSuite } from "./models/base_test.js";
+import { BaseTestSuite } from './models/base_test.js';
+import { HeatGenerationServiceTestSuite } from './services/heatGenerationService_test.js';
 
 function TestSuite() {
   // TODO: Make a pretty output for this:
@@ -10,7 +11,9 @@ function TestSuite() {
 
 TestSuite.prototype.run = function() {
   GlobalHelpers();
-  BaseTestSuite(this);
+  // BaseTestSuite(this);
+  HeatGenerationServiceTestSuite(this);
+
 }
 
 TestSuite.prototype.expect = function(bool, description) {

@@ -49,7 +49,5 @@ Event.prototype.fromJSON = function(json) {
     this.danceGroups.fromJSON(json.danceGroups);
     this.dancers.fromJSON(json.dancers);
     this.entries.fromJSON(json.entries);
-  // this.dancers = JSON.parse(json.dancers);
-  // this.heats = JSON.parse(json.heats);
-  //this.danceGroups = parsedJson.danceGroups;
+    this.heats.fromJSON(json.heats);
 }

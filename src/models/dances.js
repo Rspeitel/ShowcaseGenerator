@@ -1,12 +1,11 @@
 import { Base } from './base.js';
 import { createUUID } from '../helpers.js';
 
-// I completed the todo!
-function Dance(_data) {
-  if(name === null || name === undefined) { name = "" }
+function Dance(data) {
+  if(data?.name === null || data?.name === undefined) { data = {name: ""} }
 
   this.uuid = createUUID();
-  this.name = name;
+  this.name = data.name;
   this.danceMax = 12;
   this.dancerMax = 12;
 }

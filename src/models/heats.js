@@ -3,8 +3,9 @@ import { createUUID } from '../helpers.js';
 
 function Heat(data) {
   this.uuid = createUUID();
-  this.danceUUID = data.danceUUID; 
-  this.entries = [];
+  this.danceUUID = data?.danceUUID; 
+  this.entries = data?.entries || [];
+  this.dancers = data?.dancers || [];
 }
 
 export function Heats() {

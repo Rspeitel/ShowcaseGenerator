@@ -20,7 +20,7 @@ Entries.prototype.allEntriesByDance = function(danceUUID) {
   return this.elements.filter((element) => element.danceUUID === danceUUID);
 }
 
-Entries.prototype.update = function(attribute, value) {
+Entry.prototype.update = function(attribute, value) {
   switch(attribute) {
     case 'heatUUID':
       this.heatUUID = value;

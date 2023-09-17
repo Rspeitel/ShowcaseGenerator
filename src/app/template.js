@@ -70,6 +70,18 @@ export function AppTemplates() {
     +  '    </div>'
     +  '  </div>'
     + '</main>'
+
+  this.printTemplate
+    = '<main class="main-content" id="main-content">'
+    +  '<h3>Print</h3>'
+    +  '<select name="printables" id="printables">'
+    +  '  <option value="heat">Heat Sheets</option>'
+    +  '  <option value="critique">Critique Sheets</option>'
+    +  '  <option value="event"></option>'
+    +  '</select>'
+    +  '<hr>'
+    +  '<textarea />'
+    + '</main>'
 }
 
 AppTemplates.prototype.generateSettings = function() {

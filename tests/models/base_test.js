@@ -1,7 +1,6 @@
 import { Base } from "../../src/models/base.js";
 import { createUUID } from "../../src/helpers.js";
 
-
 function ModelExample(data) {
   this.uuid = createUUID();
   this.foo = data.foo;
@@ -16,10 +15,6 @@ ModelExamples.prototype = Object.create(Base.prototype);
 ModelExamples.prototype.constructor = Base;
 
 export function BaseTestSuite(testSuite) {
-  Tests(testSuite);
-}
-
-function Tests(testSuite) {
   let modelExamples = new ModelExamples();
   let createdExample = modelExamples.create({foo: "Something", bar: "Something else"});
 
