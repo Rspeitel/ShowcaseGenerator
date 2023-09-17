@@ -132,6 +132,8 @@ SettingsController.prototype.parseDancers = function(data) {
     //Use the data to generate dancers
     let leader = this.event.dancers.findOrCreateByName(row[leaderColumn]);
     let follower = this.event.dancers.findOrCreateByName(row[followerColumn]);
+    // TODO: Add error alert for someone who has too many entries
+
     for (let columnIndex = 2; columnIndex < header.length; columnIndex++) {
       let dance = this.event.dances.findBy('name', header[columnIndex]);
 

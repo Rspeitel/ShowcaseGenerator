@@ -16,4 +16,15 @@ export function Entries() {
 Entries.prototype = Object.create(Base.prototype);
 Entries.prototype.constructor = Base;
 
+Entries.prototype.allEntriesByDance = function(danceUUID) {
+  return this.elements.filter((element) => element.danceUUID === danceUUID);
+}
 
+Entries.prototype.update = function(attribute, value) {
+  switch(attribute) {
+    case 'heatUUID':
+      this.heatUUID = value;
+      break;
+  return this;
+  }
+}

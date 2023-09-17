@@ -2,12 +2,14 @@ import { Dances } from './models/dances.js';
 import { DanceGroups } from './models/danceGroups.js';
 import { Dancers } from './models/dancers.js';
 import { Entries } from './models/entries.js';
+import { Heats } from './models/heats.js';
 
 export function Event() {
   this.dances = new Dances();
   this.danceGroups = new DanceGroups();
   this.dancers = new Dancers();
   this.entries = new Entries();
+  this.heats = new Heats();
 }
 
 Event.prototype.getReadableEntry = function (entry) {
@@ -38,6 +40,7 @@ Event.prototype.toJSON = function () {
     danceGroups: this.danceGroups.toJSON(),
     dancers: this.dancers.toJSON(),
     entries: this.entries.toJSON(),
+    heats: this.heats.toJSON(),
   });
 }
 

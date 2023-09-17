@@ -34,6 +34,6 @@ AppController.prototype.navigate = function(key) {
 }
 
 AppController.prototype.init = function() {
-  this.navigate('event');
+  this.navigate('settings');
 }
 
