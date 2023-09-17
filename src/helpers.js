@@ -51,7 +51,7 @@ export function GlobalHelpers() {
     return this.find(element => element[key] === value);
   }
 
-  Array.prototype.remove = function (element) {
+  Array.prototype.remove = function(element) {
     let index = null;
 
     if(nullCheck(this.at(0)?.uuid)) { index = this.findIndexBy('uuid', element); }

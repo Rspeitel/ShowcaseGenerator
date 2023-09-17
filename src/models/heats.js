@@ -7,7 +7,7 @@ function Heat(data) {
   this.entries = [];
 }
 
-export function Heats(dances) {
+export function Heats() {
   Base.call(this, Heat)
 }
 
