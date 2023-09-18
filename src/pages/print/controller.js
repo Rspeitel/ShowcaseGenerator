@@ -1,5 +1,6 @@
 import { PrintView } from './view.js';
 import { GenerateHeatSheetService } from '../../services/generateHeatSheetService.js';
+import { GenerateCritiqueCardsService } from '../../services/generateCritiqueCardsService.js';
 
 export function PrintController(event) {
   this.view = new PrintView();
@@ -13,17 +14,30 @@ export function PrintController(event) {
 
 
 PrintController.prototype.print = function() {
-  var printWindow = window.open('', '', 'height=400,width=800');
-  printWindow.document.write('<html><head></head>');
-  printWindow.document.write('<style> @media print {.pagebreak {page-break-before:always}} </style>');
-  printWindow.document.write('<body >');
-  printWindow.document.write(new GenerateHeatSheetService(this.event).generate());
-  printWindow.document.write('</body></html>');
-  printWindow.document.close();
-  printWindow.print();
+  //createNewPrintableDocument(new GenerateHeatSheetService(this.event).generateAll());
+  createNewPrintableDocument(new GenerateCritiqueCardsService(this.event).generateAll());
+
 }
 
 // All Controllers have an init function
 PrintController.prototype.init = function() {
   
+}
+
+function createNewPrintableDocument(content) {
+  let printWindow = window.open('', '', 'height=400,width=800');
+  
+  let finalProduct = document.createElement('html');
+  let style = document.createElement('style');
+
+  style.innerHTML 
+    = ".critiqueSheet {height: 3.5in}"
+    + "@media print {.pagebreak {page-break-before:always}}";
+  finalProduct.appendChild(style);
+  finalProduct.appendChild(content);
+
+  printWindow.document.write(finalProduct.outerHTML);
+
+  printWindow.document.close();
+  printWindow.print();
 }
