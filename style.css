@@ -10,6 +10,21 @@
 }
 
 /* Globals */
+@media print {
+  .pagebreak { 
+    clear: both;
+    page-break-before: always; 
+  }
+
+  @page {
+      margin-top: 0;
+      margin-bottom: 0;
+  }
+  body {
+      padding 72px;
+  }
+}
+
 header {
   background-color: var(--dark-grey);
   font-size: 36px;
@@ -53,6 +68,10 @@ button {
 
 main {
   margin: 16px;
+}
+
+textarea {
+  width: 100%;
 }
 
 /* General */

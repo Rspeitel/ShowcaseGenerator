@@ -8,6 +8,7 @@ export function AppView() {
   this.settingsNav = document.getElementById('nav-settings');
   this.eventNav = document.getElementById('nav-event');
   this.dancersNav = document.getElementById('nav-dancers');
+  this.printNav = document.getElementById('nav-print');
 }
 
 AppView.prototype.bindNav = function (event, handler) {
@@ -23,6 +24,10 @@ AppView.prototype.bindNav = function (event, handler) {
     case 'dancers':
       addEventListener(this.dancersNav, "click", () => handler());
       break;
+
+    case 'print':
+      addEventListener(this.printNav, "click", () => handler());
+      break;
   }
 }
 
@@ -30,6 +35,7 @@ AppView.prototype.removeActive = function (active) {
   this.settingsNav.classList.remove('nav-active');
   this.eventNav.classList.remove('nav-active');
   this.dancersNav.classList.remove('nav-active');
+  this.printNav.classList.remove('nav-active');
 }
 
 AppView.prototype.navigate = function (location) {
@@ -51,6 +57,12 @@ AppView.prototype.navigate = function (location) {
       this.removeActive();
       this.dancersNav.classList.add('nav-active');
       template = this.template.generateDancers();
+      break;
+
+    case 'print':
+      this.removeActive();
+      this.printNav.classList.add('nav-active');
+      template = this.template.generatePrint();
       break;
   }
   removeAllChildren(this.body);

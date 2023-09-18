@@ -77,10 +77,11 @@ export function AppTemplates() {
     +  '<select name="printables" id="printables">'
     +  '  <option value="heat">Heat Sheets</option>'
     +  '  <option value="critique">Critique Sheets</option>'
-    +  '  <option value="event"></option>'
+    +  '  <option value="event">Event</option>'
     +  '</select>'
     +  '<hr>'
-    +  '<textarea />'
+    +  '<textarea id="textarea-primary" rows=15> </textarea>'
+    + ' <button id="print-button">Print</button>'
     + '</main>'
 }
 
@@ -101,6 +102,13 @@ AppTemplates.prototype.generateEvent = function() {
 AppTemplates.prototype.generateDancers = function() {
   var node = document.createElement('div');
   node.innerHTML= this.dancersTemplate;
+
+  return node;
+}
+
+AppTemplates.prototype.generatePrint = function() {
+  var node = document.createElement('div');
+  node.innerHTML= this.printTemplate;
 
   return node;
 }
