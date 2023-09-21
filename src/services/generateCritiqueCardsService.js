@@ -1,10 +1,15 @@
 export function GenerateCritiqueCardsService(event, format = "") {
   this.event = event;
   this.format 
-    = '<div> Critque information </div>'
-    + ''
-    + ''
-    + ''
+    = '<h1>The best showcase ever</h1>'
+    + '<h4>{{dance}} {{heatNumber}}: ({{bibNumber}}){{leaderName}} and {{followerName}}</h4>'
+    + '<div class="critiqueOptions">'
+    + '  <span>Timing</span>'
+    + '  <span>Frame</span>'
+    + '  <span>Poise</span>' 
+    + '  <span>Footwork</span>'
+    + '</div>'
+    + '<span>Notes: </span>'
     + ''
     + '';
 }
@@ -13,12 +18,14 @@ GenerateCritiqueCardsService.prototype.generateAll = function () {
   let entries = sortEntriesByHeatOrder(this.event);
 
   let critiqueList = document.createElement('body');
-  let pagebreak = document.createElement('div');
-  pagebreak.classList.add('pagebreak');
 
   entries.forEach((entry, index) => {
     critiqueList.appendChild(generateForEntry(entry, this.event, this.format));
-    if (index % 3 === 0 && index != 0) { critiqueList.appendChild(pagebreak)}
+    if ((index + 1) % 3 === 0) { 
+      let pagebreak = document.createElement('div');
+      pagebreak.classList.add('pagebreak');
+      critiqueList.appendChild(pagebreak); 
+    }
   });
 
   return critiqueList;
@@ -35,16 +42,16 @@ function sortEntriesByHeatOrder (event) {
 function generateForEntry(entry, event, format) {
   let leader = event.dancers.find(entry.leaderUUID);
   let follower = event.dancers.find(entry.followerUUID);
-  let dance = event.dancers.find(entry.danceUUID);
+  let dance = event.dances.find(entry.danceUUID);
 
   let content = document.createElement('div');
   content.classList.add('critiqueSheet');
   let view = format;
 
   view = view.replace('{{bibNumber}}', entry.bibNumber);
-  view = view.replace('{{leaderName}}', entry.leaderName);
-  view = view.replace('{{followerName}}', entry.followerName);
-  view = view.replace('{{dance}}', entry.dance);
+  view = view.replace('{{leaderName}}', leader.name);
+  view = view.replace('{{followerName}}', follower.name);
+  view = view.replace('{{dance}}', dance.name);
   view = view.replace('{{heatNumber}}', entry.heatNumber);
 
   content.innerHTML = view;

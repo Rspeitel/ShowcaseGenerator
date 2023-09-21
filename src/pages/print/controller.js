@@ -31,8 +31,21 @@ function createNewPrintableDocument(content) {
   let style = document.createElement('style');
 
   style.innerHTML 
-    = ".critiqueSheet {height: 3.5in}"
-    + "@media print {.pagebreak {page-break-before:always}}";
+    = ".critiqueSheet {"
+    + "  height: 30%;"
+    + "  page-break-inside: avoid;"
+    + "} "
+    + ".critiqueOptions {"
+    + "  display: flex;"
+    + "  justify-content: space-between;"
+    + "  margin: 0 40px;"
+    + "} "
+    + "@media print {"
+    + " .pagebreak {"
+    + "   page-break-before:always;"
+    + " }"
+    + "}";
+
   finalProduct.appendChild(style);
   finalProduct.appendChild(content);
 
