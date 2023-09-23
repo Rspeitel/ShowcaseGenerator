@@ -16,13 +16,14 @@ Event.prototype.getReadableEntry = function (entry) {
   let leader = this.dancers.find(entry.leaderUUID);
   let follower = this.dancers.find(entry.followerUUID);
   let dance = this.dances.find(entry.danceUUID);
+  let heat = this.heats.find(entry.heatUUID);
 
   return {
     leaderName: leader?.name,
     followerName: follower?.name,
     bibNumber: leader?.bibNumber,
     dance: dance?.name,
-    heatNumber: '0',
+    heatNumber: heat?.heatNumber,
   };
 }
 

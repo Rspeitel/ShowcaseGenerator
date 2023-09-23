@@ -5,7 +5,7 @@ function Heat(data) {
   this.uuid = createUUID();
   this.danceUUID = data?.danceUUID; 
   this.entries = data?.entries || [];
-  this.dancers = data?.dancers || [];
+  this.heatNumber = 1;
 }
 
 export function Heats() {
@@ -17,6 +17,15 @@ Heats.prototype.constructor = Base;
 
 Heats.prototype.allHeatsByDance = function(danceUUID) {
   return this.elements.filter((heats) => heats.danceUUID = danceUUID);
+}
+
+Heat.prototype.update = function(attribute, value) {
+  switch(attribute) {
+    case 'heatNumber':
+      this.heatNumber = value;
+      break;
+  return this;
+  }
 }
 
 

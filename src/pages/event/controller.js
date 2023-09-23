@@ -1,4 +1,5 @@
 import { EventView } from './view.js';
+import { HeatGenerationService } from '../../services/heatGenerationService.js';
 
 export function EventController(event) {
   this.event = event;
@@ -11,11 +12,16 @@ export function EventController(event) {
 }
 
 EventController.prototype.init = function() {
+  new HeatGenerationService(this.event).generate();
+
+  let readableEntries = [];
   this.event.entries.elements.forEach(entry => {
-    let readableEntry = this.event.getReadableEntry(entry);
-    this.view.renderEntriesTable('newEntry', readableEntry);
+    readableEntries.push(this.event.getReadableEntry(entry));
   });
-  //this.generateHeats();
+
+  readableEntries.sort((a, b) => a.heatNumber - b.heatNumber);
+
+  readableEntries.forEach((entry) => this.view.renderEntriesTable('newEntry', entry));
 }
 
 EventController.prototype.generateHeats = function () {

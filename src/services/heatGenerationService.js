@@ -1,13 +1,10 @@
-// Service
-
 export function HeatGenerationService(event) {
   this.event = event;
 }
 
 HeatGenerationService.prototype.generate = function() {
   console.log("GENERATING");
-  // TODO: 
-  //
+  this.event.heats.elements = [];
   // 1) Gather all the entries for a given dance
   // 2) Sort those entries by people, and find the person with the most entries (potentialHeats2)
   // 3) Take total number of entries / people allowed on the floor potentialHeats1
@@ -40,23 +37,51 @@ HeatGenerationService.prototype.generate = function() {
       heats.push(this.event.heats.create({danceUUID: dance.uuid}));
     }
 
+    let index = 0;
     entryCount.forEach((entryInfo) => {
       let entriesForDancer = entriesForDance.filter((entry) => {
         return [entry.leaderUUID, entry.followerUUID].includes(entryInfo[0]);
       })
 
       let skipped = 0;
-      entriesForDancer.forEach((entry, index) => {
-        while (index + skipped < heats.length && entry.heatUUID === null) {
-          if(heats[index + skipped].entries.length >= dance.danceMax) {
-            skipped++;
+      entriesForDancer.forEach((entry) => {
+        while (entry.heatUUID === null) {
+          if(heats[index % heats.length].entries.length >= dance.danceMax) {
+            index++;
             continue;
           }
-          heats[index + skipped].entries.push(entry.uuid);
-          entry.update('heatUUID', heats.uuid);
+          heats[index % heats.length].entries.push(entry.uuid);
+          entry.update('heatUUID', heats[index % heats.length].uuid);
+          index++;
           break;
         }
       })
     });
   });
+
+  sortHeats(this.event.heats.elements, this.event.danceGroups);
+}
+
+function sortHeats(heats, danceGroups) {
+  let heatByDance = new Map();
+  let currentHeatIndex = 1;
+  
+  // Sort by dance in danceGroup order
+  danceGroups.danceGroups.forEach((group) => {
+    group.danceUUIDs.forEach((danceUUID) => {
+      heatByDance.set(danceUUID, heats.filter((heat) => heat.danceUUID === danceUUID));
+    });
+
+    // Pop these heats onto the heat number
+    while(heatByDance.size > 0) {
+      group.danceUUIDs.forEach((danceUUID) => {
+        if (heatByDance.get(danceUUID)?.length > 0) {
+          heatByDance.get(danceUUID).pop().update("heatNumber", currentHeatIndex);
+          currentHeatIndex++;
+        } else {
+          heatByDance.delete(danceUUID);
+        };
+      });
+    }
+  })
 }
