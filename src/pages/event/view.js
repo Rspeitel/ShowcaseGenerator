@@ -3,7 +3,7 @@ import { EventTemplates } from './template.js';
 export function EventView() {
   this.template = new EventTemplates();
 
-  this.entriesTable = document.getElementById('entries-table');
+  this.entriesTable = document.getElementById('entries-table-content');
 }
 
 EventView.prototype.bindEntriesTable = function (event, handler) {

@@ -203,8 +203,11 @@ textarea {
 
 /* Entry Table */
 .entries-table {
-  height: 65%;
-  margin: 8px;
+  height: 100%;
+}
+.entries-table-content {
+  height: 100%;
+  overflow-y: auto;
 }
 
 .entry-card {

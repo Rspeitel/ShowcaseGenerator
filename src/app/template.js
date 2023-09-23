@@ -38,8 +38,6 @@ export function AppTemplates() {
   this.eventTemplate
     = '<main class="main-content" id="main-content">'
     +  '<h3>Event</h3>'
-    +  '<hr>'
-    +  '<h3>Entries</h3>'
     +  '  <div class="entries-table">'
     +  '    <div class="entry-card card-header">'
     +  '      <div>Heat #</div>'
@@ -48,7 +46,7 @@ export function AppTemplates() {
     +  '      <div class="entries-name">Follower</div>'
     +  '      <div class="entries-name">Dance</div>'
     +  '    </div>'
-    +  '    <div id="entries-table" class="entries-table">'
+    +  '    <div id="entries-table-content" class="entries-table-content">'
     +  '    </div>'
     +  '  </div>'
     + '</main>';

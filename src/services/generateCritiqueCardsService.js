@@ -43,16 +43,17 @@ function generateForEntry(entry, event, format) {
   let leader = event.dancers.find(entry.leaderUUID);
   let follower = event.dancers.find(entry.followerUUID);
   let dance = event.dances.find(entry.danceUUID);
+  let heat = event.heats.find(entry.heatUUID);
 
   let content = document.createElement('div');
   content.classList.add('critiqueSheet');
   let view = format;
 
-  view = view.replace('{{bibNumber}}', entry.bibNumber);
+  view = view.replace('{{bibNumber}}', leader.bibNumber);
   view = view.replace('{{leaderName}}', leader.name);
   view = view.replace('{{followerName}}', follower.name);
   view = view.replace('{{dance}}', dance.name);
-  view = view.replace('{{heatNumber}}', entry.heatNumber);
+  view = view.replace('{{heatNumber}}', heat?.heatNumber);
 
   content.innerHTML = view;
   return content

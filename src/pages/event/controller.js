@@ -12,7 +12,7 @@ export function EventController(event) {
 }
 
 EventController.prototype.init = function() {
-  new HeatGenerationService(this.event).generate();
+  //new HeatGenerationService(this.event).generate();
 
   let readableEntries = [];
   this.event.entries.elements.forEach(entry => {
