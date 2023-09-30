@@ -6,16 +6,25 @@ export function PrintController(event) {
   this.view = new PrintView();
   this.event = event;
 
+  this.selectedPrint = "heat";
 
   // This is where you bind action to your view items
   // this.view.bind('item', () => this.updateThing('item'));
   this.view.bind('print', () => this.print());
+  this.view.bind('selectedPrint', (value) => this.selectedPrint = value);
 }
 
 
 PrintController.prototype.print = function() {
-  //createNewPrintableDocument(new GenerateHeatSheetService(this.event).generateAll());
-  createNewPrintableDocument(new GenerateCritiqueCardsService(this.event).generateAll());
+  if(this.selectedPrint === "heat") {
+    createNewPrintableDocument(new GenerateHeatSheetService(this.event).generateAll());
+  } else if(this.selectedPrint === "critique") {
+    createNewPrintableDocument(new GenerateCritiqueCardsService(this.event).generateAll());
+  } else if(this.selectedPrint === "event") {
+
+  } else {
+
+  }
 
 }
 

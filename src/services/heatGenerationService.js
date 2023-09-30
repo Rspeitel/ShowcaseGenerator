@@ -60,6 +60,15 @@ HeatGenerationService.prototype.generate = function() {
   });
 
   sortHeats(this.event.heats.elements, this.event.danceGroups);
+  assignBibNumbers(this.event.dancers.elements);
+}
+
+function assignBibNumbers(dancers) {
+  let currentBibNumber = 100;
+  dancers.forEach((dancer) => {
+    dancer.bibNumber = currentBibNumber;
+    currentBibNumber++;
+  })
 }
 
 function sortHeats(heats, danceGroups) {

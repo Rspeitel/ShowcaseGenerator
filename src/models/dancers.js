@@ -4,7 +4,7 @@ import { createUUID, nullCheck } from '../helpers.js';
 function Dancer(data) {
   this.uuid = createUUID();
   this.name = data;
-  this.bibNumber = '000';
+  this.bibNumber = '100';
 }
 
 Dancer.prototype.updateAll = function(dancer) {

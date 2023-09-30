@@ -12,7 +12,9 @@ export function EventController(event) {
 }
 
 EventController.prototype.init = function() {
-  //new HeatGenerationService(this.event).generate();
+  if (this.event.heats.elements.length === 0) {
+    new HeatGenerationService(this.event).generate();
+  }
 
   let readableEntries = [];
   this.event.entries.elements.forEach(entry => {
@@ -40,5 +42,5 @@ function insertIntoHeat(heatUUID, entry) {
     return false;
   }
 
-  heat.entries.push(entry.uuid); 
+  heat.entries.push(entry.uuid);
 }

@@ -11,7 +11,7 @@ GenerateHeatSheetService.prototype.generateAll = function() {
   let base = document.createElement('div');
 
   dancersEntries.forEach((entries, dancer) => {
-    base.append(this.generateForDancer(dancer, entries));
+    base.append(this.generateContentForDancer(dancer, entries));
   });
 
   return base;
@@ -28,9 +28,10 @@ GenerateHeatSheetService.prototype.generateContentForDancer = function(dancer, e
     let leader = this.event.dancers.find(entry?.leaderUUID);
     let follower = this.event.dancers.find(entry?.followerUUID);
     let dance = this.event.dances.find(entry?.danceUUID);
+    let heat = this.event.heats.find(entry.heatUUID);
 
     let node = this.template.generateHeatRow({
-      heatNumber: entry?.heatNumber,
+      heatNumber: heat?.heatNumber,
       bibNumber: leader?.bibNumber,
       leaderName: leader?.name,
       followerName: follower?.name,
